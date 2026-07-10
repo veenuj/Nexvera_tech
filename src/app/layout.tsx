@@ -66,8 +66,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2466819842110017"
-     crossorigin="anonymous"></Script>
+        <Script 
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2466819842110017"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={cn("min-h-screen bg-brand-black font-sans text-brand-lightGray antialiased", inter.variable)}>
         {/* Injecting Generative Engine Optimization for AI Crawlers */}
