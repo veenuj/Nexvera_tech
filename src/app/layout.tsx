@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
 import { SmoothScroll } from "@/components/animations/SmoothScroll";
 import { Preloader } from "@/components/animations/Preloader";
+import { AIOptimization } from "@/components/seo/AIOptimization";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -64,6 +65,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={cn("min-h-screen bg-brand-black font-sans text-brand-lightGray antialiased", inter.variable)}>
+        {/* Injecting Generative Engine Optimization for AI Crawlers */}
+        <AIOptimization />
+        
         <Preloader />
         <SmoothScroll>
           <Navbar />
