@@ -56,6 +56,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // Adding the Google AdSense Verification Meta Tag
+  other: {
+    "google-adsense-account": "ca-pub-2466819842110017",
+  },
 };
 
 export default function RootLayout({
