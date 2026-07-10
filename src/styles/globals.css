@@ -1,0 +1,45 @@
+/* Tell Tailwind v4 to import our config file */
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+@layer base {
+  :root {
+    --background: #050505;
+    --foreground: #EAEAEA;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Bypass @apply for base elements to ensure Turbopack compiles flawlessly */
+  body {
+    background-color: #050505;
+    color: #EAEAEA;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(212, 175, 55, 0.3);
+    color: #FFFFFF;
+  }
+}
+
+@layer utilities {
+  /* Native CSS fallbacks for our custom utility classes */
+  .text-gradient-gold {
+    background-image: linear-gradient(to right, #F5D76E, #D4AF37, #8C6A12);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .glass-panel {
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(24px);
+    border: 1px solid #2A2A2A;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+  }
+}
