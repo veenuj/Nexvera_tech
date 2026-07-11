@@ -1,9 +1,7 @@
 "use client";
 
 import React from "react";
-import { ReactLenis } from "@studio-freight/react-lenis";
-
-// src/components/animations/SmoothScroll.tsx
+import { ReactLenis } from "lenis/react";
 
 export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,10 +10,11 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
       options={{ 
         lerp: 0.1, 
         duration: 1.5, 
-        smoothWheel: true 
+        smoothWheel: true,
+        wheelMultiplier: 1, // Ensures standard mouse wheel behavior
       }}
     >
-      {children as any}
+      {children}
     </ReactLenis>
   );
 };
