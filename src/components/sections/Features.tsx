@@ -2,74 +2,154 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, BrainCircuit, Smartphone, Database, Workflow, ShieldCheck } from "lucide-react";
+import { 
+  Code2, 
+  BrainCircuit, 
+  TrendingUp, 
+  Workflow, 
+  ShieldCheck, 
+  Sparkles 
+} from "lucide-react";
 
-const features = [
+const services = [
   {
-    title: "Custom SaaS Development",
-    description: "End-to-end architecture and development of scalable web applications tailored to your exact business logic.",
-    icon: <Code2 size={24} className="text-gold-primary" />,
+    title: "Enterprise SaaS Architecture",
+    description: "End-to-end development of infinitely scalable web applications, engineered from scratch on modern stacks like Next.js and React for zero-latency performance.",
+    icon: <Code2 size={28} className="text-white relative z-10" />,
+    className: "md:col-span-2 lg:col-span-2",
+    badge: "Core Engineering",
+    bgGlow: "from-blue-500/10 via-transparent to-transparent",
   },
   {
-    title: "Enterprise AI Solutions",
-    description: "Integrate predictive analytics, LLMs, and custom machine learning models into your existing workflows.",
-    icon: <BrainCircuit size={24} className="text-gold-primary" />,
+    title: "Next-Gen Digital Marketing & GEO",
+    description: "Traditional SEO is dead. We dominate the new digital landscape using Generative Engine Optimization (GEO), predictive lead scoring, and AI-driven content strategies that train LLMs (like ChatGPT) to recommend your business.",
+    icon: <TrendingUp size={28} className="text-gold-primary relative z-10" />,
+    className: "md:col-span-2 lg:col-span-2 border-gold-primary/30 shadow-[0_0_30px_rgba(212,175,55,0.05)]",
+    badge: "2026 Strategy",
+    bgGlow: "from-gold-primary/20 via-transparent to-transparent",
+    highlight: true,
   },
   {
-    title: "Mobile Ecosystems",
-    description: "Native and cross-platform mobile applications designed for high performance and exceptional user experience.",
-    icon: <Smartphone size={24} className="text-gold-primary" />,
-  },
-  {
-    title: "API Integrations",
-    description: "Seamlessly connect disparate systems, CRMs, and third-party tools to create a unified data infrastructure.",
-    icon: <Database size={24} className="text-gold-primary" />,
+    title: "Applied AI & Custom LLMs",
+    description: "Integrate custom machine learning agents and data analytics directly into your existing corporate workflows.",
+    icon: <BrainCircuit size={28} className="text-white relative z-10" />,
+    className: "md:col-span-1 lg:col-span-1",
+    bgGlow: "from-purple-500/10 via-transparent to-transparent",
   },
   {
     title: "Business Automation",
-    description: "Replace manual operational bottlenecks with intelligent, automated software workflows.",
-    icon: <Workflow size={24} className="text-gold-primary" />,
+    description: "Eliminate operational bottlenecks with intelligent, automated API pipelines and seamless CRM integrations.",
+    icon: <Workflow size={28} className="text-white relative z-10" />,
+    className: "md:col-span-1 lg:col-span-1",
+    bgGlow: "from-emerald-500/10 via-transparent to-transparent",
   },
   {
-    title: "Security & Compliance",
-    description: "Bank-grade security protocols and infrastructure audits to ensure your data remains protected.",
-    icon: <ShieldCheck size={24} className="text-gold-primary" />,
+    title: "Zero-Trust Security & Cloud",
+    description: "Bank-grade infrastructure audits, end-to-end encryption, and resilient cloud deployments to ensure your enterprise data remains completely impenetrable.",
+    icon: <ShieldCheck size={28} className="text-white relative z-10" />,
+    className: "md:col-span-2 lg:col-span-2",
+    bgGlow: "from-red-500/10 via-transparent to-transparent",
   },
 ];
 
+// TS bypass for Vercel build
+const containerVariants: any = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const cardVariants: any = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" } 
+  },
+};
+
 export const Features = () => {
   return (
-    <section className="py-32 relative">
-      <div className="container mx-auto px-6">
+    <section className="py-32 relative bg-brand-black overflow-hidden">
+      {/* Background Architectural Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20 max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Engineering <span className="text-gradient-gold">Excellence</span>
-          </h2>
-          <p className="text-lg text-brand-lightGray">
-            We don't just write code; we build resilient digital assets that drive revenue, reduce costs, and scale infinitely.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6"
+          >
+            <Sparkles size={14} className="text-gold-primary" />
+            <span className="text-brand-lightGray font-mono text-xs tracking-widest uppercase">Our Capabilities</span>
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight"
+          >
+            Engineering <span className="text-gradient-gold drop-shadow-sm">Excellence</span>
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-brand-lightGray font-light text-balance"
+          >
+            We don't just write code; we architect resilient digital ecosystems designed to capture market share, automate operations, and scale infinitely.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
+        {/* Bento Grid Layout */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[minmax(280px,auto)]"
+        >
+          {services.map((service, index) => (
             <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="glass-panel p-8 group hover:-translate-y-2 transition-transform duration-300"
+              key={service.title}
+              variants={cardVariants}
+              className={`glass-panel rounded-3xl p-8 group hover:-translate-y-1 transition-all duration-500 relative overflow-hidden flex flex-col border border-white/5 hover:border-gold-primary/40 ${service.className}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                {feature.icon}
+              {/* Dynamic Internal Glows */}
+              <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${service.bgGlow} opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-gold-primary/10 transition-colors duration-500 pointer-events-none" />
+
+              <div className="flex justify-between items-start mb-auto relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:border-gold-primary/30 transition-all duration-500 shadow-lg">
+                  {service.icon}
+                </div>
+                {service.badge && (
+                  <span className={`text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full border ${service.highlight ? 'bg-gold-primary/10 border-gold-primary/30 text-gold-primary' : 'bg-white/5 border-white/10 text-brand-lightGray'}`}>
+                    {service.badge}
+                  </span>
+                )}
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-              <p className="text-brand-lightGray/80 leading-relaxed text-sm">
-                {feature.description}
-              </p>
+
+              <div className="mt-8 relative z-10">
+                <h3 className={`text-2xl font-bold mb-3 tracking-tight ${service.highlight ? 'text-gold-primary' : 'text-white'}`}>
+                  {service.title}
+                </h3>
+                <p className="text-brand-lightGray leading-relaxed font-light text-balance">
+                  {service.description}
+                </p>
+              </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
