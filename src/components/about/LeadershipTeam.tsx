@@ -2,45 +2,37 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, Globe } from "lucide-react"; // Updated imports
+import { Mail, Globe, Terminal, Code2, BrainCircuit } from "lucide-react";
 
 const team = [
   {
-    name: "Alexander Vance",
-    role: "Chief Executive Officer",
-    image: "bg-gradient-to-br from-brand-charcoal to-brand-black",
-  },
-  {
-    name: "Dr. Elena Rostova",
-    role: "Chief Technology Officer",
-    image: "bg-gradient-to-bl from-brand-border to-brand-black",
-  },
-  {
-    name: "Marcus Thorne",
-    role: "Head of AI Research",
-    image: "bg-gradient-to-tr from-brand-charcoal to-brand-black",
-  },
-  {
-    name: "Sarah Jenkins",
-    role: "VP of Engineering",
-    image: "bg-gradient-to-tl from-[#111] to-[#050505]",
+    name: "Anuj Dhiman",
+    role: "Principal Software Consultant & AI Architect",
+    bio: "Masterminding scalable enterprise architectures, full-stack software development, and the integration of next-generation Multi-Agent AI systems.",
+    website: "https://anujdhiman.com",
+    email: "mailto:info@nexveratechnologies.com",
+    icons: [<Terminal key="1" size={16} />, <Code2 key="2" size={16} />, <BrainCircuit key="3" size={16} />]
   },
 ];
 
 export const LeadershipTeam = () => {
   return (
-    <section className="py-24 relative bg-brand-charcoal/20 border-t border-brand-border/50">
-      <div className="container mx-auto px-6">
+    <section className="py-24 relative bg-brand-charcoal/20 border-t border-brand-border/50 overflow-hidden">
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-primary/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Executive <span className="text-gradient-gold">Leadership</span>
           </h2>
           <p className="text-lg text-brand-lightGray/80">
-            Guided by industry veterans with decades of experience in enterprise software, artificial intelligence, and global scale operations.
+            Guided by elite technical expertise and a deep understanding of enterprise-scale software engineering and AI automation.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Centered Grid for the single leader */}
+        <div className="flex justify-center">
           {team.map((member, index) => (
             <motion.div
               key={member.name}
@@ -48,27 +40,49 @@ export const LeadershipTeam = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
+              className="w-full max-w-2xl group"
             >
-              {/* Portrait Placeholder */}
-              <div className={`w-full aspect-[4/5] rounded-2xl mb-6 relative overflow-hidden ${member.image}`}>
-                <div className="absolute inset-0 bg-gold-primary/0 group-hover:bg-gold-primary/10 transition-colors duration-500" />
+              <div className="glass-panel p-10 md:p-12 rounded-3xl border border-white/5 hover:border-gold-primary/30 transition-all duration-500 relative overflow-hidden flex flex-col items-center text-center">
                 
-                {/* Contact Overlay */}
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  <button className="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white hover:text-gold-primary transition-colors" aria-label="Email Contact">
-                    <Mail size={18} />
-                  </button>
-                  <button className="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white hover:text-gold-primary transition-colors" aria-label="Website Profile">
-                    <Globe size={18} />
-                  </button>
+                {/* Subtle internal gradient sweep on hover */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-gold-primary/0 via-gold-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Abstract Tech Icons (replaces the image) */}
+                <div className="flex gap-4 mb-8 text-gold-primary/60 group-hover:text-gold-primary transition-colors duration-500">
+                  {member.icons}
                 </div>
-              </div>
 
-              {/* Details */}
-              <div className="text-center">
-                <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-                <p className="text-gold-primary font-medium text-sm">{member.role}</p>
+                {/* Details */}
+                <h3 className="text-3xl font-bold text-white mb-2 tracking-tight">
+                  {member.name}
+                </h3>
+                <p className="text-gold-primary font-medium text-lg mb-6">
+                  {member.role}
+                </p>
+                
+                <p className="text-brand-lightGray leading-relaxed mb-10 max-w-lg mx-auto">
+                  {member.bio}
+                </p>
+
+                {/* Contact & Links */}
+                <div className="flex justify-center gap-6 relative z-10">
+                  <a 
+                    href={member.email}
+                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-gold-primary/10 hover:text-gold-primary hover:border-gold-primary/30 transition-all duration-300"
+                  >
+                    <Mail size={18} />
+                    <span className="text-sm font-medium">Contact</span>
+                  </a>
+                  <a 
+                    href={member.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-gold-primary/10 hover:text-gold-primary hover:border-gold-primary/30 transition-all duration-300"
+                  >
+                    <Globe size={18} />
+                    <span className="text-sm font-medium">Portfolio</span>
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}
