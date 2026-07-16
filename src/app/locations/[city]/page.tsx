@@ -1,10 +1,9 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import Link from "next/link";
 import { MapPin, Code2, TrendingUp, Layout } from "lucide-react";
 import { serviceLocations } from "@/data/locations";
-import { CTASection } from "@/components/sections/CTASection";
+import { PremiumCTA } from "@/components/ui/PremiumCTA";
 
 // 1. Tell Next.js to pre-build all these city pages for max SEO speed
 export function generateStaticParams() {
@@ -97,7 +96,8 @@ export default function LocationPage({ params }: { params: { city: string } }) {
           </div>
         </div>
 
-        <CTASection text={`Transform Your ${location.name} Business`} />
+        {/* Using the correct PremiumCTA component that accepts the text prop */}
+        <PremiumCTA text={`Transform Your ${location.name} Business`} />
       </div>
     </main>
   );
