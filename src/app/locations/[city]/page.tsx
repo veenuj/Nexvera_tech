@@ -5,16 +5,21 @@ import { MapPin, Code2, TrendingUp, Layout } from "lucide-react";
 import { serviceLocations } from "@/data/locations";
 import { PremiumCTA } from "@/components/ui/PremiumCTA";
 
-// 1. Tell Next.js to pre-build all these city pages for max SEO speed
+// 1. Pre-build paths for ultra-fast local SEO
 export function generateStaticParams() {
   return serviceLocations.map((location) => ({
     city: location.id,
   }));
 }
 
-// 2. Dynamically generate the Meta Title & Description for Google
-export function generateMetadata({ params }: { params: { city: string } }): Metadata {
-  const location = serviceLocations.find((loc) => loc.id === params.city);
+// 2. Async Meta Generation (Next.js 15+ requirement)
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ city: string }> 
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const location = serviceLocations.find((loc) => loc.id.toLowerCase() === resolvedParams.city.toLowerCase());
   
   if (!location) return { title: "Location Not Found" };
 
@@ -27,13 +32,21 @@ export function generateMetadata({ params }: { params: { city: string } }): Meta
   };
 }
 
-// 3. The Page Component
-export default function LocationPage({ params }: { params: { city: string } }) {
-  const location = serviceLocations.find((loc) => loc.id === params.city);
+// 3. Async Page Component (Next.js 15+ requirement)
+export default async function LocationPage({ 
+  params 
+}: { 
+  params: Promise<{ city: string }> 
+}) {
+  // Await the params before trying to read the city
+  const resolvedParams = await params;
+  
+  // Find the location (using toLowerCase for safety so /Meerut and /meerut both work)
+  const location = serviceLocations.find((loc) => loc.id.toLowerCase() === resolvedParams.city.toLowerCase());
   
   if (!location) notFound();
 
-  // JSON-LD Schema for Local SEO Domination
+  // JSON-LD Schema
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -55,7 +68,6 @@ export default function LocationPage({ params }: { params: { city: string } }) {
 
   return (
     <main className="min-h-screen bg-brand-black text-white pt-32 pb-24 relative overflow-hidden">
-      {/* Injecting the Schema invisibly into the DOM */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gold-primary/5 rounded-full blur-[150px] pointer-events-none" />
@@ -96,7 +108,6 @@ export default function LocationPage({ params }: { params: { city: string } }) {
           </div>
         </div>
 
-        {/* Using the correct PremiumCTA component that accepts the text prop */}
         <PremiumCTA text={`Transform Your ${location.name} Business`} />
       </div>
     </main>
