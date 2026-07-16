@@ -52,10 +52,10 @@ export const Footer = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-gold-primary/50 to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
           
           {/* Brand & Socials Section */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-2 lg:col-span-4">
             <Link href="/" className="inline-block mb-6">
               <h2 className="text-2xl font-bold text-white">
                 NexVera <span className="text-gradient-gold">Technologies</span>
@@ -85,7 +85,7 @@ export const Footer = () => {
           </div>
 
           {/* Quick Links Section */}
-          <div className="md:col-span-3 md:col-start-7">
+          <div className="lg:col-span-2">
             <h3 className="text-white font-semibold mb-6">Services</h3>
             <ul className="space-y-4">
               <li>
@@ -111,8 +111,22 @@ export const Footer = () => {
             </ul>
           </div>
 
+          {/* Service Areas Section (Programmatic SEO Links) */}
+          <div className="lg:col-span-3">
+            <h3 className="text-white font-semibold mb-6">Service Areas</h3>
+            <ul className="grid grid-cols-2 gap-y-4 gap-x-4">
+              {['Meerut', 'Saharanpur', 'Muzaffarnagar', 'Roorkee', 'Haridwar', 'Shamli', 'Baghpat'].map((city) => (
+                <li key={city}>
+                  <Link href={`/locations/${city.toLowerCase()}`} className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors">
+                    {city}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact Information Section */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-2 lg:col-span-3">
             <h3 className="text-white font-semibold mb-6">Headquarters</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm text-brand-lightGray">
