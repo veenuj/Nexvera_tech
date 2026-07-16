@@ -7,6 +7,7 @@ import { Footer } from "@/components/navigation/Footer";
 import { SmoothScroll } from "@/components/animations/SmoothScroll";
 import { Preloader } from "@/components/animations/Preloader";
 import { AIOptimization } from "@/components/seo/AIOptimization";
+import { TrackingScripts } from "@/components/analytics/TrackingScripts";
 import Script from "next/script";
 
 const inter = Inter({
@@ -78,6 +79,10 @@ export default function RootLayout({
         />
       </head>
       <body className={cn("min-h-screen bg-brand-black font-sans text-brand-lightGray antialiased", inter.variable)}>
+        
+        {/* Inject Tracking Scripts (GA4 & Meta Pixel) */}
+        <TrackingScripts />
+
         {/* Injecting Generative Engine Optimization for AI Crawlers */}
         <AIOptimization />
         
@@ -89,6 +94,20 @@ export default function RootLayout({
           </main>
           <Footer />
         </SmoothScroll>
+
+        {/* Meta Pixel Fallback for browsers with Javascript fully disabled */}
+        {process.env.NEXT_PUBLIC_META_PIXEL_ID && (
+          <noscript>
+            <img 
+              className="hidden"
+              height="1" 
+              width="1" 
+              style={{ display: 'none' }}
+              src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_META_PIXEL_ID}&ev=PageView&noscript=1`} 
+              alt=""
+            />
+          </noscript>
+        )}
       </body>
     </html>
   );
