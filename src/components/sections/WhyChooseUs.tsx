@@ -11,7 +11,8 @@ import {
   Zap, 
   ShieldCheck, 
   Cloud, 
-  Headset 
+  Headset,
+  Sparkles
 } from "lucide-react";
 
 const features = [
@@ -72,36 +73,62 @@ const containerVariants: any = {
 };
 
 const itemVariants: any = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, scale: 0.95, y: 30 },
   visible: {
     opacity: 1,
+    scale: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 export const WhyChooseUs = () => {
   return (
-    <section className="py-24 relative overflow-hidden bg-brand-black">
-      {/* Subtle Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold-primary/5 rounded-full blur-[120px] pointer-events-none" />
+    <section className="py-32 relative overflow-hidden bg-brand-black border-y border-white/5">
+      
+      {/* ---------------- LIQUID UI BACKGROUND ---------------- */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Top Left Gold Blob */}
+        <div className="absolute top-[5%] -left-[10%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-gold-primary/15 to-transparent blur-[120px] animate-[spin_30s_linear_infinite]" />
+        
+        {/* Bottom Right Blue Blob */}
+        <div className="absolute bottom-[5%] -right-[10%] w-[700px] h-[700px] rounded-full bg-gradient-to-tl from-blue-600/10 to-transparent blur-[150px] animate-[spin_40s_linear_infinite_reverse]" />
+      </div>
+      
+      {/* Ambient Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      {/* ------------------------------------------------------ */}
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 
+        
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          {/* Glassmorphism Floating Badge */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-mono text-gold-primary uppercase tracking-widest mb-8 shadow-[0_0_20px_rgba(212,175,55,0.1)]"
+          >
+            <Sparkles size={14} className="animate-pulse" /> The NexVera Advantage
+          </motion.div>
+
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-xl text-balance"
           >
             Why Choose <span className="text-gradient-gold">NexVera</span>
           </motion.h2>
+          
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-brand-lightGray font-light"
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-lg md:text-xl text-brand-lightGray font-light leading-relaxed text-balance"
           >
             The premier partner for Web Design, Custom Software, and Digital Marketing in Meerut. We don't just build websites; we architect digital empires.
           </motion.p>
@@ -112,24 +139,34 @@ export const WhyChooseUs = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto relative"
         >
+          {/* Center ambient glow behind the grid */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gold-primary/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+
           {features.map((feature, index) => (
             <motion.div 
               key={index} 
               variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="glass-panel p-8 rounded-2xl group border border-white/5 hover:border-gold-primary/30 transition-all duration-300"
+              className="glass-panel p-8 md:p-10 rounded-[2rem] group border border-white/10 hover:border-gold-primary/40 bg-brand-black/40 backdrop-blur-xl transition-all duration-700 relative overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:-translate-y-2"
             >
-              <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-gold-primary mb-6 group-hover:scale-110 group-hover:bg-gold-primary/10 transition-all duration-300">
-                {feature.icon}
+              {/* Internal Liquid Hover Glow */}
+              <div className="absolute inset-0 bg-gradient-to-b from-brand-black/40 to-transparent z-0" />
+              <div className="absolute -inset-full bg-gradient-to-tr from-gold-primary/0 via-gold-primary/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[spin_6s_linear_infinite] transition-opacity duration-1000 -z-10 blur-2xl" />
+              
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gold-primary mb-8 group-hover:scale-110 group-hover:bg-gold-primary/10 group-hover:border-gold-primary/40 transition-all duration-500 shadow-lg">
+                  {feature.icon}
+                </div>
+                
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-gold-primary transition-colors duration-500 tracking-tight">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-brand-lightGray font-light leading-relaxed group-hover:text-brand-lightGray/90 transition-colors duration-300">
+                  {feature.description}
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-gold-primary transition-colors duration-300">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-brand-lightGray leading-relaxed">
-                {feature.description}
-              </p>
             </motion.div>
           ))}
         </motion.div>
