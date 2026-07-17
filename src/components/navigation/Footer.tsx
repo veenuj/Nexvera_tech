@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { MapPin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 // Inline SVG components to replace the deprecated lucide-react brand icons
 const Facebook = ({ size = 20 }: { size?: number }) => (
@@ -48,8 +48,26 @@ export const Footer = () => {
 
   return (
     <footer className="relative bg-brand-black pt-20 pb-8 border-t border-white/10 overflow-hidden">
+      
+      {/* ---------------- LIQUID UI BACKGROUND ---------------- */}
+      {/* Base Glassmorphism Overlay */}
+      <div className="absolute inset-0 bg-brand-black/40 backdrop-blur-[100px] z-[5]" />
+      
+      {/* Animated Liquid Orbs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[1] pointer-events-none opacity-50">
+        {/* Gold Liquid Blob */}
+        <div className="absolute -top-[50%] -left-[10%] w-[70%] h-[150%] rounded-[100%] bg-gradient-to-br from-gold-primary/20 to-transparent blur-[120px] animate-[spin_25s_linear_infinite]" />
+        
+        {/* Secondary Blue/Gray Liquid Blob */}
+        <div className="absolute -bottom-[50%] -right-[10%] w-[60%] h-[150%] rounded-[100%] bg-gradient-to-tl from-white/10 to-transparent blur-[100px] animate-[spin_30s_linear_infinite_reverse]" />
+        
+        {/* Center Accent Blob */}
+        <div className="absolute top-[20%] left-[30%] w-[40%] h-[60%] rounded-[100%] bg-gold-primary/10 blur-[150px] animate-pulse transition-all duration-1000" />
+      </div>
+      
       {/* Subtle top border glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-gold-primary/50 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-gold-primary/50 to-transparent z-10" />
+      {/* ------------------------------------------------------ */}
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
@@ -57,7 +75,7 @@ export const Footer = () => {
           {/* Brand & Socials Section */}
           <div className="md:col-span-2 lg:col-span-4">
             <Link href="/" className="inline-block mb-6">
-              <h2 className="text-2xl font-bold text-white">
+              <h2 className="text-2xl font-bold text-white drop-shadow-lg">
                 NexVera <span className="text-gradient-gold">Technologies</span>
               </h2>
             </Link>
@@ -73,7 +91,7 @@ export const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-brand-lightGray hover:bg-gold-primary/10 hover:text-gold-primary transition-all duration-300 border border-white/5 hover:border-gold-primary/30 group"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-brand-lightGray hover:bg-gold-primary/20 hover:text-gold-primary transition-all duration-500 border border-white/10 hover:border-gold-primary/50 group backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]"
                   aria-label={`Follow us on ${social.name}`}
                 >
                   <span className="group-hover:scale-110 transition-transform duration-300">
@@ -89,22 +107,22 @@ export const Footer = () => {
             <h3 className="text-white font-semibold mb-6">Services</h3>
             <ul className="space-y-4">
               <li>
-                <Link href="/services/software" className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors">
+                <Link href="/services/software" className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors duration-300">
                   Enterprise Software
                 </Link>
               </li>
               <li>
-                <Link href="/services/ai" className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors">
+                <Link href="/services/ai" className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors duration-300">
                   AI Automation
                 </Link>
               </li>
               <li>
-                <Link href="/services/web" className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors">
+                <Link href="/services/web" className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors duration-300">
                   Web Development
                 </Link>
               </li>
               <li>
-                <Link href="/services/marketing" className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors">
+                <Link href="/services/marketing" className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors duration-300">
                   Digital Marketing
                 </Link>
               </li>
@@ -117,7 +135,7 @@ export const Footer = () => {
             <ul className="grid grid-cols-2 gap-y-4 gap-x-4">
               {['Meerut', 'Saharanpur', 'Muzaffarnagar', 'Roorkee', 'Haridwar', 'Shamli', 'Baghpat'].map((city) => (
                 <li key={city}>
-                  <Link href={`/locations/${city.toLowerCase()}`} className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors">
+                  <Link href={`/locations/${city.toLowerCase()}`} className="text-sm text-brand-lightGray hover:text-gold-primary transition-colors duration-300">
                     {city}
                   </Link>
                 </li>
@@ -127,15 +145,13 @@ export const Footer = () => {
 
           {/* Contact Information Section */}
           <div className="md:col-span-2 lg:col-span-3">
-            <h3 className="text-white font-semibold mb-6">Headquarters</h3>
+            <h3 className="text-white font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-sm text-brand-lightGray">
-                <MapPin size={18} className="text-gold-primary shrink-0 mt-0.5" />
-                <span>Meerut, Uttar Pradesh<br />India</span>
-              </li>
-              <li className="flex items-center gap-3 text-sm text-brand-lightGray">
-                <Mail size={18} className="text-gold-primary shrink-0" />
-                <a href="mailto:info@nexveratechnologies.com" className="hover:text-gold-primary transition-colors">
+              <li className="flex items-center gap-3 text-sm text-brand-lightGray group">
+                <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-gold-primary/10 group-hover:border-gold-primary/30 transition-colors duration-300">
+                  <Mail size={14} className="text-gold-primary shrink-0" />
+                </div>
+                <a href="mailto:info@nexveratechnologies.com" className="hover:text-gold-primary transition-colors duration-300">
                   info@nexveratechnologies.com
                 </a>
               </li>
@@ -143,11 +159,21 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Engineered By */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        {/* Bottom Bar: Copyright, Legal Links & Engineered By */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 relative">
+          
+          {/* Copyright */}
           <p className="text-brand-lightGray text-sm text-center md:text-left">
             &copy; {currentYear} NexVera Technologies. All rights reserved.
           </p>
+
+          {/* Legal Pages (Required for Ads) */}
+          <div className="flex gap-6 text-sm text-brand-lightGray">
+            <Link href="/privacy" className="hover:text-gold-primary transition-colors duration-300">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-gold-primary transition-colors duration-300">Terms of Service</Link>
+          </div>
+
+          {/* Engineered By */}
           <div className="text-brand-lightGray text-sm flex items-center gap-1.5">
             Engineered by
             <a 
