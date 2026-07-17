@@ -29,6 +29,7 @@ const topLocations = [
 const standardLinks = [
   { name: "Portfolio", href: "/portfolio" },
   { name: "About", href: "/about" },
+  { name: "FAQ", href: "/faq" },
 ];
 
 export const Navbar = () => {
